@@ -1,0 +1,13 @@
+language: bash
+services: docker
+
+env:
+  - VERSION=5.7
+  - VERSION=5.6
+
+before_script:
+  - cd "$VERSION"
+  - image="mysql-debug-$VERSION"
+
+script:
+  - travis_retry docker build -t "$image" .
