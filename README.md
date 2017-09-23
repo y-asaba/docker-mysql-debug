@@ -32,16 +32,22 @@ $ mkdir -p ~/src
 $ cd ~/src
 $ wget http://ftp.jaist.ac.jp/pub/mysql/Downloads/MySQL-5.7/mysql-boost-5.7.19.tar.gz
 $ tar zxf mysql-boost-5.7.19.tar.gz
-$ docker run -v ~/src/mysql-5.7.19:/mysql-debug/mysql-5.7.19 -p 3306:3306 -p 2345:2345 -t --cap-add=SYS_PTRACE --security-opt seccomp=unconfined mysql-debug /bin/bash -c 'cd /mysql-debug; cp /mysql-debug/bin/mysqld /mysql-debug/mysql-5.7.19; sudo gdbserver :2345 ./bin/mysqld --user=root'
+$ docker run -v ~/src/mysql-5.7.19:/mysql-debug/mysql-5.7.19 -p 3306:3306 -p 2345:2345 -t --cap-add=SYS_PTRACE --security-opt seccomp=unconfined mysql-debug-5.7 /bin/bash -c 'cd /mysql-debug; cp /mysql-debug/bin/mysqld /mysql-debug/mysql-5.7.19; sudo gdbserver :2345 ./bin/mysqld --user=root'
 ```
 
 #### Remote debug with GDB ####
 The following example is to trace ALTER TABLE statement.
 
+1. Load symbols
+2. Set source code path to `~/src/mysql-5.7.19`
+3. Set breakpoint
+4. Attach the mysqld process remotely
+
 ```
 $ gdb
 (gdb) file ~/src/mysql-5.7.19/mysqld
 Reading symbols from ~/src/mysql-5.7.19/mysqld...done.
+(gdb) set substitute-path /mysql-debug/mysql-5.7.19 ~/src/mysql-5.7.19
 (gdb) b mysql_alter_table
 Breakpoint 1 at 0x15d88c8: file /mysql-debug/mysql-5.7.19/sql/sql_table.cc, line 8955.
 (gdb) target remote :2345
