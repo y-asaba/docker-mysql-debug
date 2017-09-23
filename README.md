@@ -1,5 +1,7 @@
 ## MySQL Debug Build Docker Image ##
 
+[![Build Status](https://travis-ci.org/y-asaba/docker-mysql-debug.svg?branch=master)](https://travis-ci.org/y-asaba/docker-mysql-debug)
+
 This Dockerfile builds MySQL database server with debugging information.
 
 **Please do not use this image in production envrionment because mysqld is compiled without optimization (-O0 option).**
