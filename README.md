@@ -12,13 +12,26 @@ This Dockerfile builds MySQL database server with debugging information.
 $ docker build -t mysql-debug-5.7 5.7
 ```
 
+#### MySQL 5.6 ####
+
+```
+$ docker build -t mysql-debug-5.6 5.6
+```
+
 
 ### How To Remote Debug on MacOS ###
 
 #### Install GDB which recognizes GNU/Linux ABI. ####
+You need to install GDB which recognizes GNU/Linux ABI. You can install GDB with the following step.
+
 ```
 $ brew tap homebrew/dupes
 $ brew install gdb --with-all-target
+```
+
+You can confirm supported ABIs with `set osabi` command.
+
+```
 $ gdb
 (gdb) set osabi
 Requires an argument. Valid arguments are auto, default, none, GNU/Linux, Symbian, NetBSD/a.out, NetBSD/ELF, OpenBSD/ELF, WindowsCE, Cygwin, FreeBSD/a.out, FreeBSD/ELF, GNU/Hurd, QNX-Neutrino, Solaris, SVR4, DJGPP, DICOS, Darwin, SDE, AIX, LynxOS178, Newlib, OpenVMS.
