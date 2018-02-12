@@ -95,6 +95,13 @@ Thread 3 hit Breakpoint 1, mysql_alter_table (thd=0x7fffb4289b20,
     ...
 ```
 
+Optional: Connecting Docker container
+
+```
+$ docker ps | grep mysql # search of container id
+$ docker exec -it ${DOCKER_CONTAINER_ID} bash
+```
+
 #### mysql command on MacOS ####
 To connect to the MySQL server, you can connect to 127.0.0.1:3306 with the mysql command.
 
