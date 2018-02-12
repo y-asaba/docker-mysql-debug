@@ -20,6 +20,14 @@ $ docker build -t mysql-debug-5.7 5.7
 $ docker build -t mysql-debug-5.6 5.6
 ```
 
+#### Optional
+
+Setting the target Version
+
+```
+$ docker build --build-arg MYSQL_VERSION=5.7.21 -t mysql-debug-5.7 5.7
+```
+
 
 ### How To Remote Debug on MacOS ###
 
