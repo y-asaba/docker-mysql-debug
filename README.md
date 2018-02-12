@@ -20,6 +20,14 @@ $ docker build -t mysql-debug-5.7 5.7
 $ docker build -t mysql-debug-5.6 5.6
 ```
 
+#### Optional
+
+Setting the target Version
+
+```
+$ docker build --build-arg MYSQL_VERSION=5.7.21 -t mysql-debug-5.7 5.7
+```
+
 
 ### How To Remote Debug on MacOS ###
 
@@ -85,6 +93,13 @@ Thread 3 hit Breakpoint 1, mysql_alter_table (thd=0x7fffb4289b20,
     alter_info=0x7fffec4b6480)
     at /mysql-debug/mysql-5.7.19/sql/sql_table.cc:8955
     ...
+```
+
+Optional: Connecting Docker container
+
+```
+$ docker ps | grep mysql # search of container id
+$ docker exec -it ${DOCKER_CONTAINER_ID} bash
 ```
 
 #### mysql command on MacOS ####
