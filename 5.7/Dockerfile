@@ -1,6 +1,6 @@
 FROM ubuntu:trusty as builder
 
-ARG MYSQL_VERSION=5.7.20
+ARG MYSQL_VERSION=5.7.22
 
 WORKDIR /root
 
