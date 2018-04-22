@@ -1,15 +1,15 @@
 FROM ubuntu:trusty as builder
 
-ARG MYSQL_VERSION=5.7.22
+ARG MYSQL_VERSION=8.0.11
 
 WORKDIR /root
 
 RUN apt-get update && \
-    DEBIAN_FRONTEND=noninteractive apt-get install build-essential cmake wget curl libncurses5-dev -y -o Dpkg::Options::='--force-confdef' -o Dpkg::Options::='--force-confold' && \
-    wget http://ftp.jaist.ac.jp/pub/mysql/Downloads/MySQL-5.7/mysql-boost-${MYSQL_VERSION}.tar.gz && \
+    DEBIAN_FRONTEND=noninteractive apt-get install build-essential cmake wget curl libncurses5-dev libssl-dev -y -o Dpkg::Options::='--force-confdef' -o Dpkg::Options::='--force-confold' && \
+    wget http://ftp.jaist.ac.jp/pub/mysql/Downloads/MySQL-8.0/mysql-boost-${MYSQL_VERSION}.tar.gz && \
     tar zxf mysql-boost-${MYSQL_VERSION}.tar.gz && \
     cd mysql-${MYSQL_VERSION} && \
-    CFLAGS=-O0 cmake -DWITH_PIC=1 -DWITH_DEBUG=1 -DWITH_INNODB_EXTRA_DEBUG=1 -DCMAKE_INSTALL_PREFIX=/mysql-debug -DDOWNLOAD_BOOST=1 -DWITH_BOOST=./boost && \
+    CFLAGS=-O0 cmake -DWITH_DEBUG=1 -DWITH_INNODB_EXTRA_DEBUG=1 -DCMAKE_INSTALL_PREFIX=/mysql-debug -DDOWNLOAD_BOOST=1 -DWITH_BOOST=./boost && \
     make -j$(getconf _NPROCESSORS_ONLN) install && \
     cd .. && \
     rm -rf mysql-${MYSQL_VERSION}
