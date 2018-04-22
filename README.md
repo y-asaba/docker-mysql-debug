@@ -8,6 +8,12 @@ This Dockerfile builds MySQL database server with debugging information.
 
 ### How to Build ###
 
+#### MySQL 8.0 ####
+
+```
+$ docker build -t mysql-debug-8.0 8.0
+```
+
 #### MySQL 5.7 ####
 
 ```
