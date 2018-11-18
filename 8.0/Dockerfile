@@ -1,6 +1,6 @@
-FROM ubuntu:trusty as builder
+FROM ubuntu:18.04 as builder
 
-ARG MYSQL_VERSION=8.0.11
+ARG MYSQL_VERSION=8.0.13
 
 WORKDIR /root
 
